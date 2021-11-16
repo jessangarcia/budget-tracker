@@ -9,7 +9,7 @@ request.onupgradeneeded = function(event) {
     //save a reference to db
     const db = event.target.result;
     //create an oject store (table)
-    db.createObjectStore('new_transaction', { autoIncrement: true})
+    db.createObjectStore('new_transaction', { autoIncrement: true });
 };
 
 request.onsuccess = function(event) {
