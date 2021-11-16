@@ -5,14 +5,14 @@ let db;
 const request = indexedDB.open('budget_tracker', 1);
 
 // this event will emit if the database version changes (nonexistant to version 1, v1 to v2, etc.)
-request.onupgradeneeded = function(event) {
+request.onupgradeneeded = function (event) {
     //save a reference to db
     const db = event.target.result;
     //create an oject store (table)
-    db.createObjectStore('new_transaction', { autoIncrement: true });
+    db.createObjectStore('new_transaction', { autoIncrement: true })
 };
 
-request.onsuccess = function(event) {
+request.onsuccess = function (event) {
     db = event.target.result;
 
     //check if app is online 
@@ -21,7 +21,7 @@ request.onsuccess = function(event) {
     }
 };
 
-request.onerror = function(event) {
+request.onerror = function (event) {
     console.log(event.target.errorCode);
 }
 
@@ -45,7 +45,7 @@ function uploadTransaction() {
     const getAll = budgetObjectStore.getAll();
 
     //upon successful .getAll() run this function
-    getAll.onsuccess = function() {
+    getAll.onsuccess = function () {
         if (getAll.result.length > 0) {
             fetch('/api/transaction', {
                 method: 'POST',
